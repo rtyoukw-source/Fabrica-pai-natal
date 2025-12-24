@@ -1,0 +1,2092 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="referrer" content="no-referrer">
+    <title>🏭 Fuga da Fábrica do Pai Natal 🎄</title>
+    <!-- Permitir iframe em WordPress -->
+    <script>
+        // Verificar se está num iframe
+        if (window.self !== window.top) {
+            document.documentElement.classList.add('in-iframe');
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red-soft: #ef5350;
+            --red-christmas: #c62828;
+            --red-dark: #b71c1c;
+            --green-soft: #66bb6a;
+            --green-christmas: #2e7d32;
+            --green-dark: #1b5e20;
+            --gold: #ffd54f;
+            --gold-dark: #ffb300;
+            --snow-white: #fafafa;
+            --ice-blue: #e3f2fd;
+            --cream: #fff8e1;
+            --brown-wood: #5d4037;
+            --brown-light: #8d6e63;
+            --purple-magic: #7e57c2;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(180deg, #1a237e 0%, #283593 30%, #3949ab 60%, #5c6bc0 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            user-select: none;
+            margin: 0;
+            padding: 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Ajustes para iframe */
+        html {
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        .game-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 10px;
+            position: relative;
+            z-index: 10;
+            min-height: 100%;
+        }
+
+        /* Aurora Boreal animada */
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(180deg, 
+                rgba(76, 175, 80, 0.1) 0%,
+                rgba(129, 212, 250, 0.15) 30%,
+                rgba(186, 104, 200, 0.1) 60%,
+                transparent 100%);
+            animation: aurora 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes aurora {
+            0%, 100% { opacity: 0.5; transform: translateX(-5%); }
+            50% { opacity: 0.8; transform: translateX(5%); }
+        }
+
+        /* Neve melhorada */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -20px;
+            color: white;
+            animation: snowfall linear infinite;
+            opacity: 0.9;
+            text-shadow: 0 0 5px rgba(255,255,255,0.8);
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(-20px) rotate(0deg) translateX(0); }
+            25% { transform: translateY(25vh) rotate(90deg) translateX(10px); }
+            50% { transform: translateY(50vh) rotate(180deg) translateX(-10px); }
+            75% { transform: translateY(75vh) rotate(270deg) translateX(10px); }
+            100% { transform: translateY(100vh) rotate(360deg) translateX(0); opacity: 0; }
+        }
+
+        /* Container principal */
+        .game-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Header da Fábrica */
+        .factory-header {
+            background: linear-gradient(135deg, var(--brown-wood), var(--brown-light));
+            border-radius: 25px;
+            padding: 15px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4), inset 0 2px 10px rgba(255,255,255,0.1);
+            border: 5px solid var(--gold);
+            margin-bottom: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .factory-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: repeating-linear-gradient(90deg, var(--red-christmas), var(--red-christmas) 20px, var(--snow-white) 20px, var(--snow-white) 40px);
+        }
+
+        .factory-header h1 {
+            font-size: 1.5rem;
+            color: var(--snow-white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .level-badge {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 800;
+            color: #333;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(255,193,7,0.4);
+        }
+
+        /* Painel de progresso com presentes */
+        .progress-panel {
+            background: linear-gradient(135deg, var(--green-christmas), var(--green-dark));
+            border-radius: 20px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 4px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .workshop-scene {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .elf-worker {
+            font-size: 2.2rem;
+            animation: elfWork 1s ease infinite;
+        }
+
+        @keyframes elfWork {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        .conveyor-belt {
+            display: flex;
+            gap: 5px;
+            background: #424242;
+            padding: 8px 15px;
+            border-radius: 10px;
+            border: 3px solid #616161;
+        }
+
+        .toy-slot {
+            width: 35px;
+            height: 35px;
+            background: #333;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: all 0.5s ease;
+            border: 2px solid #555;
+        }
+
+        .toy-slot.earned {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border-color: var(--gold);
+            animation: toyPop 0.6s ease;
+        }
+
+        @keyframes toyPop {
+            0% { transform: scale(0) rotate(-180deg); }
+            60% { transform: scale(1.3) rotate(10deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+
+        .keys-collected {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.3);
+            padding: 8px 15px;
+            border-radius: 15px;
+        }
+
+        .key-icon {
+            font-size: 1.8rem;
+            filter: grayscale(100%) opacity(0.3);
+            transition: all 0.5s ease;
+        }
+
+        .key-icon.earned {
+            filter: none;
+            animation: keyShine 0.6s ease;
+        }
+
+        @keyframes keyShine {
+            0% { transform: scale(0) rotate(-180deg); }
+            50% { transform: scale(1.5) rotate(20deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+
+        /* Área do Jogo - Fábrica */
+        .game-area {
+            background: linear-gradient(180deg, var(--brown-wood) 0%, var(--brown-light) 100%);
+            border-radius: 25px;
+            padding: 25px;
+            min-height: 450px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4), inset 0 5px 20px rgba(0,0,0,0.2);
+            border: 5px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorações da fábrica */
+        .factory-decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background: linear-gradient(180deg, rgba(0,0,0,0.2), transparent);
+            padding: 10px;
+        }
+
+        .hanging-toy {
+            font-size: 1.8rem;
+            animation: swing 3s ease-in-out infinite;
+            transform-origin: top center;
+        }
+
+        @keyframes swing {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        /* Ecrãs */
+        .screen {
+            display: none;
+            width: 100%;
+            text-align: center;
+            animation: fadeSlide 0.6s ease;
+            padding-top: 40px;
+        }
+
+        .screen.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Start Screen - Portão da Fábrica */
+        .factory-gate {
+            background: linear-gradient(135deg, var(--red-christmas), var(--red-dark));
+            padding: 30px 40px;
+            border-radius: 25px;
+            border: 6px solid var(--gold);
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        .factory-gate h2 {
+            font-size: 1.8rem;
+            color: var(--snow-white);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .factory-scene {
+            font-size: 3.5rem;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .factory-scene span {
+            animation: bobble 2s ease-in-out infinite;
+        }
+
+        .factory-scene span:nth-child(2) { animation-delay: 0.2s; }
+        .factory-scene span:nth-child(3) { animation-delay: 0.4s; }
+        .factory-scene span:nth-child(4) { animation-delay: 0.6s; }
+        .factory-scene span:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes bobble {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .factory-gate p {
+            color: var(--cream);
+            font-size: 1.2rem;
+            margin-top: 15px;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, var(--green-soft), var(--green-christmas));
+            color: white;
+            border: none;
+            padding: 22px 55px;
+            border-radius: 40px;
+            font-size: 1.7rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            border: 4px solid var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .start-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+
+        .start-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Painel de história/desafio */
+        .story-panel {
+            background: linear-gradient(135deg, var(--cream), white);
+            padding: 25px;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            border: 5px solid var(--green-christmas);
+            width: 100%;
+            max-width: 650px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        .story-panel::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 15px solid var(--green-christmas);
+        }
+
+        .elf-character {
+            font-size: 5rem;
+            display: block;
+            margin-bottom: 10px;
+            animation: elfJump 1.5s ease infinite;
+        }
+
+        @keyframes elfJump {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.05); }
+        }
+
+        .speaker-btn {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255,193,7,0.5);
+            transition: all 0.3s ease;
+            animation: pulse 2s ease infinite;
+            margin-top: 10px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255,193,7,0.7); }
+            50% { box-shadow: 0 0 0 15px rgba(255,193,7,0); }
+        }
+
+        .speaker-btn:hover {
+            transform: scale(1.15);
+        }
+
+        /* Área de desafios */
+        .challenge-area {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Grid de opções melhorado */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .option-btn {
+            background: linear-gradient(145deg, #ffffff, #e0e0e0);
+            border: 5px solid var(--green-soft);
+            border-radius: 20px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15), inset 0 2px 5px rgba(255,255,255,0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.5), transparent);
+            border-radius: 15px 15px 0 0;
+        }
+
+        .option-btn:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--gold);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .option-btn .emoji {
+            font-size: 3.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .option-btn.correct {
+            background: linear-gradient(145deg, #c8e6c9, #81c784);
+            border-color: var(--green-christmas);
+            animation: correctPulse 0.6s ease;
+        }
+
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.15); }
+            60% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
+        .option-btn.wrong {
+            background: linear-gradient(145deg, #ffcdd2, #ef9a9a);
+            border-color: var(--red-christmas);
+            animation: wrongShake 0.5s ease;
+        }
+
+        @keyframes wrongShake {
+            0%, 100% { transform: translateX(0) rotate(0); }
+            20% { transform: translateX(-15px) rotate(-5deg); }
+            40% { transform: translateX(15px) rotate(5deg); }
+            60% { transform: translateX(-10px) rotate(-3deg); }
+            80% { transform: translateX(10px) rotate(3deg); }
+        }
+
+        .option-btn.disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* Área de sequência melhorada */
+        .sequence-area {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .sequence-slots {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 20px;
+        }
+
+        .sequence-slot {
+            width: 80px;
+            height: 80px;
+            border: 4px dashed var(--gold);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            background: rgba(255,255,255,0.9);
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: inset 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .sequence-slot .slot-number {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #333;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        .sequence-slot.filled {
+            border-style: solid;
+            border-color: var(--green-christmas);
+            background: white;
+            animation: slotFill 0.4s ease;
+        }
+
+        @keyframes slotFill {
+            0% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .sequence-slot.highlight {
+            background: var(--cream);
+            transform: scale(1.05);
+            border-color: var(--green-soft);
+        }
+
+        .draggable-items {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--cream), white);
+            border-radius: 20px;
+            border: 4px solid var(--brown-light);
+        }
+
+        .draggable-item {
+            font-size: 3rem;
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 18px;
+            transition: all 0.3s ease;
+            background: white;
+            border: 4px solid transparent;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .draggable-item:hover {
+            transform: scale(1.2) rotate(5deg);
+            border-color: var(--gold);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .draggable-item.selected {
+            border-color: var(--gold);
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255,193,7,0.5);
+            animation: selectedBounce 0.5s ease;
+        }
+
+        @keyframes selectedBounce {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1.1); }
+        }
+
+        .draggable-item.used {
+            opacity: 0.3;
+            pointer-events: none;
+            transform: scale(0.9);
+        }
+
+        /* Botões de ação */
+        .check-btn {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: #333;
+            border: none;
+            padding: 16px 45px;
+            border-radius: 30px;
+            font-size: 1.4rem;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255,193,7,0.4);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .check-btn:hover:not(:disabled) {
+            transform: scale(1.05);
+        }
+
+        .check-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .hint-btn {
+            background: linear-gradient(135deg, #90caf9, #42a5f5);
+            border: none;
+            padding: 14px 30px;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(33,150,243,0.4);
+            transition: all 0.3s ease;
+        }
+
+        .hint-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Botões de navegação */
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .nav-btn {
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-btn.home-btn {
+            background: linear-gradient(135deg, #ff8a65, #f4511e);
+            color: white;
+        }
+
+        .nav-btn.back-btn {
+            background: linear-gradient(135deg, #ffb74d, #ff9800);
+            color: white;
+        }
+
+        .nav-btn.repeat-btn {
+            background: linear-gradient(135deg, #9575cd, #7e57c2);
+            color: white;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .next-btn {
+            background: linear-gradient(135deg, var(--green-soft), var(--green-christmas));
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            border-radius: 35px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(46,125,50,0.4);
+            border: 4px solid var(--gold);
+            display: none;
+            align-items: center;
+            gap: 12px;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .next-btn.show {
+            display: flex;
+            animation: fadeSlide 0.5s ease;
+        }
+
+        .next-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Código/Programação visual */
+        .code-blocks {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #263238;
+            padding: 20px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            border: 4px solid #37474f;
+        }
+
+        .code-line {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #37474f;
+            padding: 12px 15px;
+            border-radius: 12px;
+            font-size: 1.3rem;
+            color: white;
+            border-left: 5px solid var(--green-soft);
+        }
+
+        .code-line .line-number {
+            background: var(--purple-magic);
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .code-line .code-emoji {
+            font-size: 2rem;
+        }
+
+        .code-slot {
+            min-width: 60px;
+            min-height: 50px;
+            background: #455a64;
+            border: 3px dashed var(--gold);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .code-slot.filled {
+            border-style: solid;
+            background: var(--green-dark);
+        }
+
+        .code-slot.highlight {
+            background: rgba(255,215,0,0.3);
+        }
+
+        /* Labirinto simples */
+        .maze-container {
+            display: grid;
+            grid-template-columns: repeat(5, 60px);
+            gap: 5px;
+            background: #263238;
+            padding: 20px;
+            border-radius: 20px;
+            border: 4px solid #37474f;
+        }
+
+        .maze-cell {
+            width: 60px;
+            height: 60px;
+            background: #455a64;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .maze-cell.path {
+            background: #546e7a;
+        }
+
+        .maze-cell.current {
+            background: var(--gold);
+            animation: currentPulse 1s ease infinite;
+        }
+
+        @keyframes currentPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .maze-cell.goal {
+            background: var(--green-soft);
+        }
+
+        .maze-cell.wall {
+            background: #37474f;
+        }
+
+        .arrow-controls {
+            display: grid;
+            grid-template-columns: repeat(3, 70px);
+            grid-template-rows: repeat(2, 70px);
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .arrow-btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            border: none;
+            font-size: 2.5rem;
+            cursor: pointer;
+            background: linear-gradient(145deg, var(--gold), var(--gold-dark));
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .arrow-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .arrow-btn:active {
+            transform: scale(0.95);
+        }
+
+        .arrow-btn.empty {
+            visibility: hidden;
+        }
+
+        /* Feedback Overlay melhorado */
+        .feedback-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        /* Iframe: usar absolute em vez de fixed para overlays */
+        @media screen {
+            .feedback-overlay,
+            .celebration {
+                position: fixed;
+            }
+        }
+
+        .feedback-overlay.show {
+            display: flex;
+        }
+
+        .feedback-box {
+            background: linear-gradient(135deg, var(--snow-white), var(--cream));
+            padding: 45px 55px;
+            border-radius: 35px;
+            text-align: center;
+            border: 6px solid var(--gold);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 100px rgba(255,215,0,0.3);
+            animation: feedbackPop 0.5s ease;
+        }
+
+        @keyframes feedbackPop {
+            0% { transform: scale(0) rotate(-10deg); }
+            60% { transform: scale(1.1) rotate(5deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+
+        .feedback-box .emoji {
+            font-size: 7rem;
+            display: block;
+            margin-bottom: 15px;
+            animation: emojiCelebrate 0.8s ease;
+        }
+
+        @keyframes emojiCelebrate {
+            0% { transform: scale(0) rotate(-180deg); }
+            50% { transform: scale(1.3) rotate(10deg); }
+            100% { transform: scale(1) rotate(0); }
+        }
+
+        .feedback-box .message {
+            font-size: 2rem;
+            color: var(--green-christmas);
+            font-weight: 800;
+        }
+
+        /* Celebração Final épica */
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, #1a237e 0%, #0d1b3e 100%);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 3000;
+        }
+
+        .celebration.show {
+            display: flex;
+        }
+
+        .celebration-content {
+            background: linear-gradient(135deg, var(--cream), white);
+            padding: 45px;
+            border-radius: 40px;
+            text-align: center;
+            border: 8px solid var(--gold);
+            box-shadow: 0 0 80px rgba(255,215,0,0.6), 0 0 150px rgba(255,215,0,0.3);
+            animation: celebrationReveal 0.8s ease;
+            max-width: 550px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes celebrationReveal {
+            0% { transform: scale(0) rotate(-15deg); opacity: 0; }
+            60% { transform: scale(1.05) rotate(3deg); }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+
+        .celebration-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 15px;
+            background: repeating-linear-gradient(90deg, var(--red-christmas), var(--red-christmas) 15px, var(--green-christmas) 15px, var(--green-christmas) 30px);
+        }
+
+        .celebration-content h2 {
+            font-size: 2.2rem;
+            color: var(--red-christmas);
+            margin: 15px 0;
+            text-shadow: 2px 2px 0 var(--gold);
+        }
+
+        .celebration-content .trophy-area {
+            font-size: 6rem;
+            display: block;
+            margin: 20px 0;
+            animation: trophyBounce 1s ease infinite;
+        }
+
+        @keyframes trophyBounce {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .celebration-content p {
+            font-size: 1.3rem;
+            color: #555;
+            margin: 12px 0;
+        }
+
+        .final-score {
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            padding: 20px 40px;
+            border-radius: 25px;
+            display: inline-block;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(255,193,7,0.5);
+        }
+
+        .final-score span {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #333;
+        }
+
+        .toys-collected {
+            font-size: 2.5rem;
+            margin: 15px 0;
+            letter-spacing: 8px;
+        }
+
+        .play-again-btn {
+            background: linear-gradient(135deg, var(--green-soft), var(--green-christmas));
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 40px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 20px;
+            border: 5px solid var(--gold);
+            box-shadow: 0 8px 25px rgba(46,125,50,0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .play-again-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Confetti melhorado */
+        .confetti {
+            position: fixed;
+            width: 15px;
+            height: 15px;
+            top: -20px;
+            animation: confettiFall linear forwards;
+            z-index: 3001;
+            pointer-events: none;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-20px) rotate(0deg) scale(1); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg) scale(0.5); opacity: 0; }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            font-size: 1.5rem;
+            animation: sparkleFloat 2s ease forwards;
+            pointer-events: none;
+            z-index: 3002;
+        }
+
+        @keyframes sparkleFloat {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            20% { transform: translateY(-20px) scale(1); opacity: 1; }
+            100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+        }
+
+        /* Rodapé */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            border: 4px solid var(--green-soft);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .footer p {
+            margin: 8px 0;
+        }
+
+        .footer .title {
+            font-size: 1.1rem;
+            color: var(--green-christmas);
+            font-weight: 700;
+        }
+
+        .footer a {
+            color: var(--red-christmas);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--gold-dark);
+        }
+
+        /* Responsivo */
+        @media (max-width: 600px) {
+            .factory-header h1 {
+                font-size: 1.2rem;
+            }
+
+            .option-btn .emoji {
+                font-size: 2.8rem;
+            }
+
+            .sequence-slot {
+                width: 65px;
+                height: 65px;
+                font-size: 2rem;
+            }
+
+            .draggable-item {
+                font-size: 2.5rem;
+                padding: 10px;
+            }
+
+            .maze-container {
+                grid-template-columns: repeat(5, 50px);
+            }
+
+            .maze-cell {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+
+            .arrow-btn {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+        }
+
+        /* Estilos específicos para iframe */
+        html.in-iframe body {
+            min-height: auto;
+        }
+
+        html.in-iframe .snowflakes {
+            position: absolute;
+        }
+
+        html.in-iframe .aurora {
+            position: absolute;
+        }
+
+        html.in-iframe .feedback-overlay,
+        html.in-iframe .celebration {
+            position: absolute;
+            min-height: 100%;
+        }
+
+        html.in-iframe .confetti,
+        html.in-iframe .sparkle {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <!-- Aurora Boreal -->
+    <div class="aurora"></div>
+
+    <!-- Neve -->
+    <div class="snowflakes" id="snowflakes"></div>
+
+    <div class="game-container">
+        <!-- Header -->
+        <header class="factory-header">
+            <h1>🏭 Fábrica de Brinquedos 🧝</h1>
+            <div class="level-badge" id="level-badge">Sala 1/10</div>
+        </header>
+
+        <!-- Painel de Progresso -->
+        <div class="progress-panel">
+            <div class="workshop-scene">
+                <span class="elf-worker">🧝</span>
+                <div class="conveyor-belt">
+                    <div class="toy-slot" id="toy-1"></div>
+                    <div class="toy-slot" id="toy-2"></div>
+                    <div class="toy-slot" id="toy-3"></div>
+                    <div class="toy-slot" id="toy-4"></div>
+                    <div class="toy-slot" id="toy-5"></div>
+                    <div class="toy-slot" id="toy-6"></div>
+                    <div class="toy-slot" id="toy-7"></div>
+                    <div class="toy-slot" id="toy-8"></div>
+                    <div class="toy-slot" id="toy-9"></div>
+                    <div class="toy-slot" id="toy-10"></div>
+                </div>
+            </div>
+            <div class="keys-collected">
+                <span class="key-icon" id="key-1">🔑</span>
+                <span class="key-icon" id="key-2">🔑</span>
+                <span class="key-icon" id="key-3">🔑</span>
+            </div>
+        </div>
+
+        <!-- Área do Jogo -->
+        <div class="game-area">
+            <!-- Decorações -->
+            <div class="factory-decorations">
+                <span class="hanging-toy">🧸</span>
+                <span class="hanging-toy" style="animation-delay: 0.5s;">🚂</span>
+                <span class="hanging-toy" style="animation-delay: 1s;">🎮</span>
+                <span class="hanging-toy" style="animation-delay: 1.5s;">🪀</span>
+                <span class="hanging-toy" style="animation-delay: 2s;">🎪</span>
+            </div>
+
+            <!-- Ecrã Inicial -->
+            <div class="screen active" id="start-screen">
+                <div class="factory-gate">
+                    <h2>🎄 Fuga da Fábrica! 🎄</h2>
+                    <div class="factory-scene">
+                        <span>🧝</span>
+                        <span>🏭</span>
+                        <span>🎁</span>
+                        <span>🔒</span>
+                        <span>🎅</span>
+                    </div>
+                    <p>Os duendes precisam de ajuda para preparar os brinquedos!</p>
+                    <p>Resolve os desafios e encontra as 3 chaves mágicas! 🔑</p>
+                </div>
+                <button class="start-btn" onclick="startGame()">
+                    <span>🚪</span>
+                    <span>Entrar na Fábrica!</span>
+                </button>
+            </div>
+
+            <!-- Níveis 1-10 serão inseridos dinamicamente -->
+            <div class="screen" id="level-screen">
+                <div class="story-panel" id="story-panel">
+                    <span class="elf-character" id="level-character">🧝</span>
+                    <button class="speaker-btn" onclick="speakStory()">🔊</button>
+                </div>
+                <div class="challenge-area" id="challenge-area">
+                    <!-- Desafio inserido dinamicamente -->
+                </div>
+                <button class="hint-btn" onclick="playHint()">💡 Ajuda</button>
+                <div class="nav-buttons">
+                    <button class="nav-btn home-btn" onclick="goToStart()">🏠 Início</button>
+                    <button class="nav-btn back-btn" id="back-btn" onclick="goBack()" disabled>⬅️ Voltar</button>
+                    <button class="nav-btn repeat-btn" onclick="repeatLevel()">🔄 Repetir</button>
+                </div>
+                <button class="next-btn" id="next-btn" onclick="nextLevel()">Próxima Sala ➡️</button>
+            </div>
+
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer">
+            <p class="title">🔬 Investigadores à Descoberta 🔬</p>
+            <p><a href="https://gavetadefichas.blogspot.com" target="_blank">📚 Gaveta de Fichas - Blog Gaveta de Fichas - 1º Ciclo</a></p>
+            <p><a href="https://www.facebook.com/gavetadefichas" target="_blank">📘 Página Gaveta de Fichas</a></p>
+        </footer>
+    </div>
+
+    <!-- Feedback -->
+    <div class="feedback-overlay" id="feedback-overlay">
+        <div class="feedback-box">
+            <span class="emoji" id="feedback-emoji">🎉</span>
+            <p class="message" id="feedback-message">Muito bem!</p>
+        </div>
+    </div>
+
+    <!-- Celebração Final -->
+    <div class="celebration" id="celebration">
+        <div class="celebration-content">
+            <h2>🎄 Conseguiste! 🎄</h2>
+            <span class="trophy-area">🏆</span>
+            <p>Ajudaste os duendes a preparar todos os brinquedos!</p>
+            <p>O Pai Natal está muito feliz!</p>
+            <div class="toys-collected" id="toys-final"></div>
+            <div class="final-score">
+                <span id="final-keys">🔑🔑🔑</span>
+            </div>
+            <p>As 3 chaves abriram o portão da fábrica!</p>
+            <button class="play-again-btn" onclick="restartGame()">
+                <span>🔄</span>
+                <span>Jogar Outra Vez</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // ==================== CONFIGURAÇÃO ====================
+        let currentLevel = 0;
+        let toysEarned = 0;
+        let keysEarned = 0;
+        let selectedItem = null;
+        let synth = window.speechSynthesis;
+        let mazePosition = { x: 0, y: 0 };
+
+        const toyEmojis = ['🧸', '🚂', '🎮', '🪀', '🎺', '🚗', '⚽', '🎨', '📚', '🎁'];
+
+        // Dados dos 10 níveis
+        const levels = {
+            1: {
+                character: '🧝',
+                story: "Olá amiguinho! Sou o duende Pimpim! Preciso de ajuda para separar os brinquedos. Encontra o brinquedo diferente!",
+                hint: "Olha bem! Três são iguais e um é diferente!",
+                correct: "Boa! Encontraste o diferente!",
+                wrong: "Esse não é diferente. Olha melhor!",
+                type: 'findDifferent',
+                items: ['🧸', '🧸', '🚂', '🧸'],
+                answer: '🚂'
+            },
+            2: {
+                character: '🧝‍♀️',
+                story: "Sou a duende Pimpinha! Os brinquedos estão todos misturados. Qual é o brinquedo grande?",
+                hint: "O elefante é o maior de todos!",
+                correct: "Isso mesmo! O elefante é grande!",
+                wrong: "Esse não é o maior. Procura o elefante!",
+                type: 'findBig',
+                items: ['🐭', '🐘', '🐱', '🐰'],
+                answer: '🐘'
+            },
+            3: {
+                character: '🧝',
+                story: "Precisamos de contar os presentes! Quantos presentes vermelhos consegues ver?",
+                hint: "Conta devagar: um, dois, três...",
+                correct: "Perfeito! Contaste muito bem!",
+                wrong: "Conta outra vez com mais cuidado!",
+                type: 'counting',
+                countItems: ['🎁', '🎁', '🎁'],
+                answer: 3
+            },
+            4: {
+                character: '🧝‍♀️',
+                story: "Ajuda-me a encontrar o par! Qual imagem é igual a esta estrela?",
+                hint: "A estrela é amarela e brilhante!",
+                correct: "Boa! Encontraste o par!",
+                wrong: "Esse não é igual. Procura a estrela!",
+                type: 'findPair',
+                target: '⭐',
+                items: ['🌙', '⭐', '☀️', '🌟'],
+                answer: '⭐'
+            },
+            5: {
+                character: '🧝',
+                story: "Os brinquedos precisam de ir para as caixas por ordem de tamanho! Ordena do mais pequeno ao maior!",
+                hint: "O rato é pequenino, o cão é médio e o urso é grande!",
+                correct: "Fantástico! Ordenaste perfeitamente!",
+                wrong: "A ordem não está certa. Começa pelo mais pequeno!",
+                type: 'sequence',
+                items: [
+                    { emoji: '🐭', order: 1 },
+                    { emoji: '🐕', order: 2 },
+                    { emoji: '🐻', order: 3 }
+                ]
+            },
+            6: {
+                character: '🧝‍♀️',
+                story: "Os duendes trabalham em equipa! Qual é a sequência certa para embalar um presente?",
+                hint: "Primeiro a caixa, depois o papel, e por fim o laço!",
+                correct: "Muito bem! Assim se embala um presente!",
+                wrong: "A ordem não está certa. Pensa: primeiro a caixa!",
+                type: 'sequence',
+                items: [
+                    { emoji: '📦', order: 1 },
+                    { emoji: '🎀', order: 2 },
+                    { emoji: '🎁', order: 3 }
+                ]
+            },
+            7: {
+                character: '🧝',
+                story: "Agora vamos programar o robô duende! Ele precisa de seguir instruções. Olha o padrão e descobre qual vem a seguir!",
+                hint: "Olha: estrela, coração, estrela, coração... qual vem depois?",
+                correct: "Excelente! Descobriste o padrão!",
+                wrong: "Olha o padrão outra vez!",
+                type: 'pattern',
+                pattern: ['⭐', '❤️', '⭐', '❤️'],
+                answer: '⭐',
+                options: ['⭐', '❤️', '🌙', '💚']
+            },
+            8: {
+                character: '🧝‍♀️',
+                story: "O robô precisa de instruções para chegar aos brinquedos! Qual caminho deve seguir? Primeiro para a direita, depois para baixo!",
+                hint: "Seta para a direita primeiro, depois seta para baixo!",
+                correct: "Perfeito! O robô chegou aos brinquedos!",
+                wrong: "Esse caminho não está certo. Tenta outra vez!",
+                type: 'sequence',
+                items: [
+                    { emoji: '➡️', order: 1 },
+                    { emoji: '⬇️', order: 2 },
+                    { emoji: '🎁', order: 3 }
+                ]
+            },
+            9: {
+                character: '🧝',
+                story: "Vamos construir um boneco de neve! Coloca as partes na ordem certa: primeiro o corpo com a bola de neve, depois os braços com ramos, depois o nariz com a cenoura, e por fim o chapéu!",
+                hint: "Primeiro a bola de neve para o corpo, depois os ramos para os braços, a cenoura para o nariz e o chapéu no fim!",
+                correct: "Incrível! O boneco de neve ficou perfeito!",
+                wrong: "A ordem não está certa. Começa pela bola de neve para o corpo!",
+                type: 'sequence',
+                items: [
+                    { emoji: '⛄', order: 1, label: 'corpo - bola de neve' },
+                    { emoji: '🪵', order: 2, label: 'braços - ramos' },
+                    { emoji: '🥕', order: 3, label: 'nariz - cenoura' },
+                    { emoji: '🎩', order: 4, label: 'chapéu' }
+                ]
+            },
+            10: {
+                character: '🎅',
+                story: "Sou o Pai Natal! Último desafio! Ajuda-me a colocar os presentes no trenó pela ordem certa: primeiro o maior que é o comboio, depois o carro, depois o ursinho, depois a bola, e por fim o laço mais pequenino!",
+                hint: "Do maior ao mais pequeno: comboio, carro, urso, bola, laço!",
+                correct: "MARAVILHOSO! O trenó está pronto para partir!",
+                wrong: "Quase! Começa pelo comboio que é o maior!",
+                type: 'sequence',
+                items: [
+                    { emoji: '🚂', order: 1, label: 'comboio' },
+                    { emoji: '🚗', order: 2, label: 'carro' },
+                    { emoji: '🧸', order: 3, label: 'urso' },
+                    { emoji: '⚽', order: 4, label: 'bola' },
+                    { emoji: '🎀', order: 5, label: 'laço' }
+                ]
+            }
+        };
+
+        // Chaves ganhas nos níveis 4, 7 e 10
+        const keyLevels = [4, 7, 10];
+
+        // ==================== SÍNTESE DE VOZ ====================
+        function speak(text, callback) {
+            if (synth.speaking) synth.cancel();
+            
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'pt-PT';
+            utterance.rate = 0.85;
+            utterance.pitch = 1.1;
+            
+            const voices = synth.getVoices();
+            const ptVoice = voices.find(v => v.lang.includes('pt'));
+            if (ptVoice) utterance.voice = ptVoice;
+            
+            utterance.onend = () => { if (callback) callback(); };
+            synth.speak(utterance);
+        }
+
+        speechSynthesis.onvoiceschanged = () => {};
+
+        // ==================== SONS ====================
+        function playTone(frequency, duration, type = 'sine') {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                oscillator.frequency.value = frequency;
+                oscillator.type = type;
+                gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+                oscillator.start(audioCtx.currentTime);
+                oscillator.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+
+        const sounds = {
+            click: () => playTone(600, 0.1),
+            correct: () => {
+                playTone(523, 0.12);
+                setTimeout(() => playTone(659, 0.12), 80);
+                setTimeout(() => playTone(784, 0.12), 160);
+                setTimeout(() => playTone(1047, 0.2), 240);
+            },
+            wrong: () => playTone(200, 0.4, 'square'),
+            key: () => {
+                [880, 1108, 1318, 1568].forEach((f, i) => setTimeout(() => playTone(f, 0.1), i * 60));
+            },
+            toy: () => {
+                playTone(698, 0.1);
+                setTimeout(() => playTone(880, 0.15), 80);
+            },
+            celebration: () => {
+                const notes = [523, 587, 659, 698, 784, 880, 988, 1047, 1175, 1318, 1480, 1568];
+                notes.forEach((note, i) => setTimeout(() => playTone(note, 0.1), i * 60));
+            }
+        };
+
+        // ==================== NEVE ====================
+        function createSnowflakes() {
+            const container = document.getElementById('snowflakes');
+            for (let i = 0; i < 40; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = ['❄', '❅', '❆', '✻'][Math.floor(Math.random() * 4)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.fontSize = (Math.random() * 1.2 + 0.8) + 'rem';
+                snowflake.style.animationDuration = (Math.random() * 5 + 6) + 's';
+                snowflake.style.animationDelay = Math.random() * 10 + 's';
+                container.appendChild(snowflake);
+            }
+        }
+
+        // ==================== JOGO ====================
+        function startGame() {
+            sounds.click();
+            speak("Bem-vindo à fábrica de brinquedos do Pai Natal! Os duendes precisam da tua ajuda!", () => {
+                document.getElementById('start-screen').classList.remove('active');
+                currentLevel = 1;
+                loadLevel(1);
+            });
+        }
+
+        function loadLevel(level) {
+            currentLevel = level;
+            const data = levels[level];
+            
+            document.getElementById('level-badge').textContent = `Sala ${level}/10`;
+            document.getElementById('level-character').textContent = data.character;
+            document.getElementById('next-btn').classList.remove('show');
+            
+            // Atualizar botão voltar
+            const backBtn = document.getElementById('back-btn');
+            backBtn.disabled = (level <= 1);
+            
+            // Limpar área de desafio
+            const challengeArea = document.getElementById('challenge-area');
+            challengeArea.innerHTML = '';
+            
+            // Mostrar ecrã de nível
+            document.getElementById('level-screen').classList.add('active');
+            
+            // Preparar desafio baseado no tipo
+            switch(data.type) {
+                case 'findDifferent':
+                case 'findBig':
+                case 'findPair':
+                    setupFindChallenge(level);
+                    break;
+                case 'counting':
+                    setupCountingChallenge(level);
+                    break;
+                case 'pattern':
+                    setupPatternChallenge(level);
+                    break;
+                case 'sequence':
+                    setupSequenceChallenge(level);
+                    break;
+            }
+            
+            // Falar história
+            setTimeout(() => speakStory(), 500);
+        }
+
+        function speakStory() {
+            sounds.click();
+            speak(levels[currentLevel].story);
+        }
+
+        function playHint() {
+            sounds.click();
+            speak(levels[currentLevel].hint);
+        }
+
+        // ==================== DESAFIOS ====================
+        
+        // Encontrar diferente/grande/par
+        function setupFindChallenge(level) {
+            const data = levels[level];
+            const challengeArea = document.getElementById('challenge-area');
+            
+            if (data.type === 'findPair') {
+                const targetDiv = document.createElement('div');
+                targetDiv.style.cssText = 'font-size: 5rem; margin-bottom: 20px; background: white; padding: 20px; border-radius: 20px; border: 5px solid #ffd54f;';
+                targetDiv.textContent = data.target;
+                challengeArea.appendChild(targetDiv);
+            }
+            
+            const grid = document.createElement('div');
+            grid.className = 'options-grid';
+            grid.id = 'options-grid';
+            
+            const shuffled = [...data.items].sort(() => Math.random() - 0.5);
+            shuffled.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerHTML = `<span class="emoji">${item}</span>`;
+                btn.onclick = () => checkFindAnswer(item, btn, level);
+                grid.appendChild(btn);
+            });
+            
+            challengeArea.appendChild(grid);
+        }
+
+        function checkFindAnswer(selected, btn, level) {
+            const data = levels[level];
+            const buttons = document.querySelectorAll('#options-grid .option-btn');
+            
+            if (selected === data.answer) {
+                sounds.correct();
+                btn.classList.add('correct');
+                buttons.forEach(b => b.classList.add('disabled'));
+                speak(data.correct);
+                showFeedback(true, () => {
+                    earnToy(level);
+                    if (keyLevels.includes(level)) earnKey();
+                    document.getElementById('next-btn').classList.add('show');
+                });
+            } else {
+                sounds.wrong();
+                btn.classList.add('wrong');
+                speak(data.wrong);
+                setTimeout(() => btn.classList.remove('wrong'), 800);
+            }
+        }
+
+        // Contagem
+        function setupCountingChallenge(level) {
+            const data = levels[level];
+            const challengeArea = document.getElementById('challenge-area');
+            
+            // Mostrar itens para contar
+            const countArea = document.createElement('div');
+            countArea.style.cssText = 'display: flex; gap: 20px; font-size: 4rem; background: white; padding: 25px; border-radius: 20px; margin-bottom: 20px;';
+            data.countItems.forEach((item, i) => {
+                const span = document.createElement('span');
+                span.textContent = item;
+                span.style.animation = `bobble 1s ease infinite ${i * 0.2}s`;
+                countArea.appendChild(span);
+            });
+            challengeArea.appendChild(countArea);
+            
+            // Opções de números
+            const grid = document.createElement('div');
+            grid.className = 'options-grid';
+            grid.id = 'options-grid';
+            
+            const numbers = [2, 3, 4, 5].sort(() => Math.random() - 0.5);
+            numbers.forEach(num => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerHTML = `<span class="emoji" style="font-size: 3rem; font-weight: 900;">${num}</span>`;
+                btn.onclick = () => checkCountAnswer(num, btn, level);
+                grid.appendChild(btn);
+            });
+            
+            challengeArea.appendChild(grid);
+        }
+
+        function checkCountAnswer(selected, btn, level) {
+            const data = levels[level];
+            const buttons = document.querySelectorAll('#options-grid .option-btn');
+            
+            if (selected === data.answer) {
+                sounds.correct();
+                btn.classList.add('correct');
+                buttons.forEach(b => b.classList.add('disabled'));
+                speak(data.correct);
+                showFeedback(true, () => {
+                    earnToy(level);
+                    if (keyLevels.includes(level)) earnKey();
+                    document.getElementById('next-btn').classList.add('show');
+                });
+            } else {
+                sounds.wrong();
+                btn.classList.add('wrong');
+                speak(data.wrong);
+                setTimeout(() => btn.classList.remove('wrong'), 800);
+            }
+        }
+
+        // Padrão
+        function setupPatternChallenge(level) {
+            const data = levels[level];
+            const challengeArea = document.getElementById('challenge-area');
+            
+            // Mostrar padrão
+            const patternDiv = document.createElement('div');
+            patternDiv.style.cssText = 'display: flex; gap: 15px; font-size: 3.5rem; background: white; padding: 25px; border-radius: 20px; margin-bottom: 20px; align-items: center;';
+            
+            data.pattern.forEach(item => {
+                const span = document.createElement('span');
+                span.textContent = item;
+                patternDiv.appendChild(span);
+            });
+            
+            const mystery = document.createElement('span');
+            mystery.id = 'pattern-mystery';
+            mystery.style.cssText = 'background: linear-gradient(135deg, #ffd54f, #ffb300); padding: 15px 25px; border-radius: 15px; font-size: 2.5rem;';
+            mystery.textContent = '?';
+            patternDiv.appendChild(mystery);
+            
+            challengeArea.appendChild(patternDiv);
+            
+            // Opções
+            const grid = document.createElement('div');
+            grid.className = 'options-grid';
+            grid.id = 'options-grid';
+            
+            const shuffled = [...data.options].sort(() => Math.random() - 0.5);
+            shuffled.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerHTML = `<span class="emoji">${item}</span>`;
+                btn.onclick = () => checkPatternAnswer(item, btn, level);
+                grid.appendChild(btn);
+            });
+            
+            challengeArea.appendChild(grid);
+        }
+
+        function checkPatternAnswer(selected, btn, level) {
+            const data = levels[level];
+            const buttons = document.querySelectorAll('#options-grid .option-btn');
+            
+            if (selected === data.answer) {
+                sounds.correct();
+                btn.classList.add('correct');
+                buttons.forEach(b => b.classList.add('disabled'));
+                document.getElementById('pattern-mystery').textContent = selected;
+                speak(data.correct);
+                showFeedback(true, () => {
+                    earnToy(level);
+                    if (keyLevels.includes(level)) earnKey();
+                    document.getElementById('next-btn').classList.add('show');
+                });
+            } else {
+                sounds.wrong();
+                btn.classList.add('wrong');
+                speak(data.wrong);
+                setTimeout(() => btn.classList.remove('wrong'), 800);
+            }
+        }
+
+        // Sequência
+        function setupSequenceChallenge(level) {
+            const data = levels[level];
+            const challengeArea = document.getElementById('challenge-area');
+            
+            const seqArea = document.createElement('div');
+            seqArea.className = 'sequence-area';
+            
+            // Slots
+            const slotsDiv = document.createElement('div');
+            slotsDiv.className = 'sequence-slots';
+            slotsDiv.id = `slots-${level}`;
+            
+            data.items.forEach((item, i) => {
+                const slot = document.createElement('div');
+                slot.className = 'sequence-slot';
+                slot.dataset.order = item.order;
+                slot.innerHTML = `<span class="slot-number">${i + 1}</span>`;
+                slot.onclick = () => placeInSlot(slot, level);
+                slotsDiv.appendChild(slot);
+            });
+            
+            seqArea.appendChild(slotsDiv);
+            
+            // Items arrastáveis
+            const itemsDiv = document.createElement('div');
+            itemsDiv.className = 'draggable-items';
+            itemsDiv.id = `items-${level}`;
+            
+            const shuffled = [...data.items].sort(() => Math.random() - 0.5);
+            shuffled.forEach(item => {
+                const el = document.createElement('div');
+                el.className = 'draggable-item';
+                el.textContent = item.emoji;
+                el.dataset.order = item.order;
+                el.onclick = () => selectItem(el, level);
+                itemsDiv.appendChild(el);
+            });
+            
+            seqArea.appendChild(itemsDiv);
+            
+            // Botão verificar
+            const checkBtn = document.createElement('button');
+            checkBtn.className = 'check-btn';
+            checkBtn.id = `check-${level}`;
+            checkBtn.innerHTML = '✅ Verificar';
+            checkBtn.disabled = true;
+            checkBtn.onclick = () => checkSequence(level);
+            seqArea.appendChild(checkBtn);
+            
+            challengeArea.appendChild(seqArea);
+            selectedItem = null;
+        }
+
+        function selectItem(el, level) {
+            if (el.classList.contains('used')) return;
+            sounds.click();
+            
+            document.querySelectorAll(`#items-${level} .draggable-item`).forEach(i => i.classList.remove('selected'));
+            el.classList.add('selected');
+            selectedItem = el;
+        }
+
+        function placeInSlot(slot, level) {
+            if (!selectedItem || slot.classList.contains('filled')) return;
+            sounds.click();
+            
+            slot.innerHTML = `<span class="slot-number">${slot.dataset.order}</span>${selectedItem.textContent}`;
+            slot.classList.add('filled');
+            slot.dataset.placedOrder = selectedItem.dataset.order;
+            
+            selectedItem.classList.add('used');
+            selectedItem.classList.remove('selected');
+            selectedItem = null;
+            
+            // Verificar se todos preenchidos
+            const allSlots = document.querySelectorAll(`#slots-${level} .sequence-slot`);
+            const allFilled = Array.from(allSlots).every(s => s.classList.contains('filled'));
+            document.getElementById(`check-${level}`).disabled = !allFilled;
+        }
+
+        function checkSequence(level) {
+            sounds.click();
+            const data = levels[level];
+            const slots = document.querySelectorAll(`#slots-${level} .sequence-slot`);
+            let correct = true;
+            
+            slots.forEach((slot, i) => {
+                if (slot.dataset.placedOrder != (i + 1)) correct = false;
+            });
+            
+            if (correct) {
+                sounds.correct();
+                speak(data.correct);
+                showFeedback(true, () => {
+                    earnToy(level);
+                    if (keyLevels.includes(level)) earnKey();
+                    document.getElementById('next-btn').classList.add('show');
+                });
+            } else {
+                sounds.wrong();
+                speak(data.wrong);
+                showFeedback(false, () => {
+                    // Reset
+                    const challengeArea = document.getElementById('challenge-area');
+                    challengeArea.innerHTML = '';
+                    setupSequenceChallenge(level);
+                });
+            }
+        }
+
+        // ==================== RECOMPENSAS ====================
+        function earnToy(level) {
+            toysEarned++;
+            const slot = document.getElementById(`toy-${level}`);
+            slot.textContent = toyEmojis[level - 1];
+            slot.classList.add('earned');
+            sounds.toy();
+            createSparkles(slot);
+        }
+
+        function earnKey() {
+            keysEarned++;
+            const key = document.getElementById(`key-${keysEarned}`);
+            key.classList.add('earned');
+            sounds.key();
+            createSparkles(key);
+        }
+
+        function createSparkles(element) {
+            const rect = element.getBoundingClientRect();
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.textContent = ['✨', '⭐', '💫'][Math.floor(Math.random() * 3)];
+                    sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+                    sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+                    document.body.appendChild(sparkle);
+                    setTimeout(() => sparkle.remove(), 2000);
+                }, i * 50);
+            }
+        }
+
+        // ==================== NAVEGAÇÃO ====================
+        function nextLevel() {
+            sounds.click();
+            document.getElementById('level-screen').classList.remove('active');
+            
+            if (currentLevel >= 10) {
+                showCelebration();
+            } else {
+                loadLevel(currentLevel + 1);
+            }
+        }
+
+        function goToStart() {
+            sounds.click();
+            if (confirm('Queres voltar ao início? O progresso será perdido!') || true) {
+                synth.cancel();
+                document.getElementById('level-screen').classList.remove('active');
+                document.getElementById('celebration').classList.remove('show');
+                
+                currentLevel = 0;
+                toysEarned = 0;
+                keysEarned = 0;
+                
+                // Reset brinquedos
+                for (let i = 1; i <= 10; i++) {
+                    const slot = document.getElementById(`toy-${i}`);
+                    slot.textContent = '';
+                    slot.classList.remove('earned');
+                }
+                
+                // Reset chaves
+                for (let i = 1; i <= 3; i++) {
+                    document.getElementById(`key-${i}`).classList.remove('earned');
+                }
+                
+                document.getElementById('start-screen').classList.add('active');
+                document.getElementById('level-badge').textContent = 'Sala 1/10';
+            }
+        }
+
+        function goBack() {
+            if (currentLevel > 1) {
+                sounds.click();
+                synth.cancel();
+                document.getElementById('next-btn').classList.remove('show');
+                loadLevel(currentLevel - 1);
+            }
+        }
+
+        function repeatLevel() {
+            sounds.click();
+            synth.cancel();
+            document.getElementById('next-btn').classList.remove('show');
+            loadLevel(currentLevel);
+        }
+
+        function showFeedback(success, callback) {
+            const overlay = document.getElementById('feedback-overlay');
+            const emoji = document.getElementById('feedback-emoji');
+            const message = document.getElementById('feedback-message');
+            
+            if (success) {
+                emoji.textContent = ['🎉', '⭐', '🌟', '👏', '🎊', '✨'][Math.floor(Math.random() * 6)];
+                message.textContent = ['Muito bem!', 'Boa!', 'Fantástico!', 'Excelente!', 'Incrível!'][Math.floor(Math.random() * 5)];
+            } else {
+                emoji.textContent = '🤔';
+                message.textContent = 'Tenta outra vez!';
+            }
+            
+            overlay.classList.add('show');
+            setTimeout(() => {
+                overlay.classList.remove('show');
+                if (callback) callback();
+            }, 1500);
+        }
+
+        function showCelebration() {
+            sounds.celebration();
+            createConfetti();
+            
+            // Mostrar brinquedos ganhos
+            let toysHtml = '';
+            for (let i = 0; i < toysEarned; i++) {
+                toysHtml += toyEmojis[i];
+            }
+            document.getElementById('toys-final').textContent = toysHtml;
+            
+            // Mostrar chaves
+            let keysHtml = '';
+            for (let i = 0; i < keysEarned; i++) {
+                keysHtml += '🔑';
+            }
+            document.getElementById('final-keys').textContent = keysHtml;
+            
+            document.getElementById('celebration').classList.add('show');
+            
+            setTimeout(() => {
+                speak("Parabéns! Conseguiste ajudar todos os duendes! As três chaves mágicas abriram o portão da fábrica! O Pai Natal está muito orgulhoso de ti! Feliz Natal!");
+            }, 1000);
+        }
+
+        function createConfetti() {
+            const colors = ['#e57373', '#81c784', '#ffd54f', '#64b5f6', '#ba68c8', '#ff8a65', '#4dd0e1'];
+            for (let i = 0; i < 80; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 4000);
+                }, i * 30);
+            }
+        }
+
+        function restartGame() {
+            sounds.click();
+            document.getElementById('celebration').classList.remove('show');
+            document.getElementById('level-screen').classList.remove('active');
+            
+            currentLevel = 0;
+            toysEarned = 0;
+            keysEarned = 0;
+            
+            // Reset brinquedos
+            for (let i = 1; i <= 10; i++) {
+                const slot = document.getElementById(`toy-${i}`);
+                slot.textContent = '';
+                slot.classList.remove('earned');
+            }
+            
+            // Reset chaves
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`key-${i}`).classList.remove('earned');
+            }
+            
+            document.getElementById('start-screen').classList.add('active');
+            document.getElementById('level-badge').textContent = 'Sala 1/10';
+        }
+
+        // ==================== INICIALIZAÇÃO ====================
+        window.onload = function() {
+            createSnowflakes();
+            if (synth) synth.getVoices();
+        };
+    </script>
+</body>
+</html>
